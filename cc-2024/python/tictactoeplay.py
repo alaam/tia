@@ -14,15 +14,15 @@ def display_row(row):
 
 
 def is_equal_row(elements):
-    return elements[0] == elements[1] == elements[2]
+    return (elements[0] != "") and elements[0] == elements[1] == elements[2]
 
 
 def is_equal_column(col):
-    return row0[col] == row1[col] == row2[col]
+    return (row0[col] != "") and row0[col] == row1[col] == row2[col]
 
 
 def is_equal_diagonal():
-    return (row0[0] == row1[1] == row2[2]) or (row0[2] == row1[1] == row2[0])
+    return ((row0[0] != "") and row0[0] == row1[1] == row2[2]) or ((row0[2] != "") and row0[2] == row1[1] == row2[0])
 
 
 def display_board():
@@ -66,8 +66,8 @@ def next_play():
     global row1
     global row2
 
-    row = input("which row? ")
-    column = input("which column?")
+    row = int(input("which row? "))
+    column = int(input("which column?"))
     symbol = input("x/o?")
 
     if row == 0:
@@ -80,7 +80,7 @@ def next_play():
         row2[column] = symbol
 
 
-while True:
+while not check_winner():
     display_board()
     next_play()
 
